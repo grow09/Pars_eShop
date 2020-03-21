@@ -246,7 +246,7 @@ def smartphone(id):
     cursor.execute(sql, val)
     mydb.commit()
 
-
+#asfagasgksd;glsdmgls;ldmg;lsdmg;smdg;sm;ldg
 
 
 if __name__ == '__main__':
