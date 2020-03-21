@@ -61,13 +61,25 @@ mydb = mysql.connector.connect(
 )
 cursor = mydb.cursor()
 
-sql = "INSERT INTO phone (id, cpu, diagonal, back_cam, front_cam, ram, color, os, price_itbox, price_rozetka, " \
-      "price_citrus, price_allo, price_stylus) " \
-      "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-val = ('3', 'HiSilicon Kirin 710F', '6.59', '48 + 8 + 2 Mpx', '16 Mpx', '4',  'черный', 'Android OS, v9.0 (Pie)',
-       '5299',  '5999', '5999',  '6169', '5799')
-cursor.execute(sql, val)
-mydb.commit()
+query = "select count(id) from contributors;"
+cursor.execute(query)
+counter = cursor.fetchone()
+print(counter[0])
+
+# sql = "INSERT INTO laptop (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, price_itbox, price_rozetka, " \
+#       "price_citrus, price_allo, price_stylus) " \
+#       "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+# val = ('2', 'Intel Core i5',  '1.8 ГГц', 'Intel HD Graphics', 'DDR3', '8',  'No ODD', '128', '26273',
+#        '24999', '24999',  '24999', '24999')
+# cursor.execute(sql, val)
+# mydb.commit()
+
+id = 1
+while id <= counter[0]:
+    print("dsg")
+    id = id + 1
+
+
 
 
 

@@ -1,5 +1,6 @@
 from selenium import webdriver
 import mysql.connector
+import time
 
 
 mydb = mysql.connector.connect(
@@ -34,11 +35,11 @@ def cycle(id):
                 laptop(id)
             elif type_[0] == "phone":
                 smartphone(id)
-            else:
-                id = id + 1
         except:
             id = id + 1
             cycle(id)
+        id = id + 1
+
 
 
 def pc(id):
@@ -83,6 +84,7 @@ def pc(id):
     rozetka_price = driver.find_element_by_class_name("product-prices__big").text.split("₴")[0]
     print(rozetka_price)
     driver.get(citrus)
+    time.sleep(1)
     driver.implicitly_wait(5)
     citrus_price = driver.find_element_by_xpath("//div[@class='price']").text.split("грн")[0]
     print(citrus_price)
@@ -106,8 +108,8 @@ def pc(id):
            citrus_price.replace(' ', ''), allo_price.replace(' ', ''), stylus_price.replace(' ', ''))
     cursor.execute(sql, val)
     mydb.commit()
-    id = id + 1
-    cycle(id)
+
+
 
 
 def laptop(id):
@@ -148,19 +150,20 @@ def laptop(id):
     itbox_price = driver.find_element_by_class_name("stuff-price").text.split("грн")[0]
     print(itbox_price)
     driver.get(rozetka)
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(10)
     rozetka_price = driver.find_element_by_class_name("product-prices__big").text.split("₴")[0]
     print(rozetka_price)
     driver.get(citrus)
-    driver.implicitly_wait(5)
+    time.sleep(1)
+    driver.implicitly_wait(10)
     citrus_price = driver.find_element_by_xpath("//div[@class='price']").text.split("грн")[0]
     print(citrus_price)
     driver.get(allo)
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(10)
     allo_price = driver.find_element_by_xpath("//span[@class='price']").text
     print(allo_price)
     driver.get(stylus)
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(10)
     stylus_price = driver.find_element_by_class_name("regular-price").text.split("грн")[0]
     print(stylus_price)
 
@@ -174,8 +177,7 @@ def laptop(id):
            citrus_price.replace(' ', ''), allo_price.replace(' ', ''), stylus_price.replace(' ', ''))
     cursor.execute(sql, val)
     mydb.commit()
-    id = id + 1
-    cycle(id)
+
 
 
 def smartphone(id):
@@ -220,6 +222,7 @@ def smartphone(id):
     rozetka_price = driver.find_element_by_class_name("product-prices__big").text.split("₴")[0]
     print(rozetka_price)
     driver.get(citrus)
+    time.sleep(1)
     driver.implicitly_wait(5)
     citrus_price = driver.find_element_by_xpath("//div[@class='price']").text.split("грн")[0]
     print(citrus_price)
@@ -242,8 +245,8 @@ def smartphone(id):
            citrus_price.replace(' ', ''), allo_price.replace(' ', ''), stylus_price.replace(' ', ''))
     cursor.execute(sql, val)
     mydb.commit()
-    id = id + 1
-    cycle(id)
+
+
 
 
 if __name__ == '__main__':
