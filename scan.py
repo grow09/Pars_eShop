@@ -110,7 +110,7 @@ def pc(id):
     category_id = 1
     print(id.split("'")[1], cpu, speed, videocard, ram_type, ram, hd_type, hd, itbox_price, rozetka_price, citrus_price, allo_price,
           stylus_price, category_id)
-    sql = "INSERT INTO FoxApp_pc (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, price_itbox, price_rozetka, " \
+    sql = "INSERT INTO FoxApp_products (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, price_itbox, price_rozetka, " \
           "price_citrus, price_allo, price_stylus, category_id, model_id) " \
           "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     val = (id.split("'")[1], cpu, speed, videocard, ram_type, ram, hd_type, hd, itbox_price, rozetka_price, citrus_price, allo_price, stylus_price, category_id, id.split("'")[1])
@@ -192,7 +192,7 @@ def laptop(id):
     category_id = 2
     print(id.split("'")[1], cpu, float(speed), videocard, ram_type, int(ram), hd_type, hd, itbox_price, rozetka_price, citrus_price, allo_price,
           stylus_price, category_id)
-    sql = "INSERT INTO FoxApp_laptop (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, price_itbox, price_rozetka, " \
+    sql = "INSERT INTO FoxApp_products (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, price_itbox, price_rozetka, " \
           "price_citrus, price_allo, price_stylus, category_id, model_id) " \
           "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     val = (id.split("'")[1], cpu, float(speed), videocard, ram_type, int(ram), hd_type, hd, itbox_price, rozetka_price, citrus_price, allo_price, stylus_price, category_id, id.split("'")[1])
@@ -272,7 +272,7 @@ def smartphone(id):
     category_id = 3
     print(id.split("'")[1], cpu, float(diagonal), int(main_cam), back_cam, front_cam, ram, color, os, itbox_price,
            rozetka_price, citrus_price, allo_price, stylus_price, category_id)
-    sql = "INSERT INTO FoxApp_smartphone (id, cpu, diagonal, main_cam, back_cam, front_cam, ram, color, os, price_itbox, price_rozetka, " \
+    sql = "INSERT INTO FoxApp_products (id, cpu, diagonal, main_cam, back_cam, front_cam, ram, color, os, price_itbox, price_rozetka, " \
           "price_citrus, price_allo, price_stylus, category_id, model_id) " \
           "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     val = (id.split("'")[1], cpu, float(diagonal), int(main_cam), back_cam, front_cam, ram, color, os, itbox_price,
