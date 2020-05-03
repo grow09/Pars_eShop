@@ -39,6 +39,7 @@ def cycle(id):
         id = id + 1
 
 def pc(id):
+    DEFAULT = 0
     id = "'"+str(id)+"'"
     query = "select link_itbox, link_rozetka, link_citrus, link_allo, link_stylus  from FoxApp_contributor where id = "+id+";"
     cursor.execute(query)
@@ -110,10 +111,14 @@ def pc(id):
     category_id = 1
     print(id.split("'")[1], cpu, speed, videocard, ram_type, ram, hd_type, hd, itbox_price, rozetka_price, citrus_price, allo_price,
           stylus_price, category_id)
-    sql = "INSERT INTO FoxApp_products (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, price_itbox, price_rozetka, " \
+    sql = "INSERT INTO FoxApp_products (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, " \
+          "diagonal, main_cam, back_cam, front_cam, color, os, price_itbox, price_rozetka, " \
           "price_citrus, price_allo, price_stylus, category_id, model_id) " \
-          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-    val = (id.split("'")[1], cpu, speed, videocard, ram_type, ram, hd_type, hd, itbox_price, rozetka_price, citrus_price, allo_price, stylus_price, category_id, id.split("'")[1])
+          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    val = (id.split("'")[1], cpu, float(speed), videocard, ram_type, int(ram), hd_type, hd, DEFAULT, DEFAULT,
+           DEFAULT, DEFAULT, DEFAULT, DEFAULT, itbox_price, rozetka_price,
+           citrus_price, allo_price, stylus_price, category_id, id.split("'")[1])
+    print(val)
     cursor.execute(sql, val)
     mydb.commit()
 
@@ -121,6 +126,7 @@ def pc(id):
 
 
 def laptop(id):
+    DEFAULT = 0
     id = "'" + str(id) + "'"
     query = "select link_itbox, link_rozetka, link_citrus, link_allo, link_stylus  from FoxApp_contributor where id = " + id + ";"
     cursor.execute(query)
@@ -192,16 +198,21 @@ def laptop(id):
     category_id = 2
     print(id.split("'")[1], cpu, float(speed), videocard, ram_type, int(ram), hd_type, hd, itbox_price, rozetka_price, citrus_price, allo_price,
           stylus_price, category_id)
-    sql = "INSERT INTO FoxApp_products (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, price_itbox, price_rozetka, " \
+    sql = "INSERT INTO FoxApp_products (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, " \
+          "diagonal, main_cam, back_cam, front_cam, color, os, price_itbox, price_rozetka, " \
           "price_citrus, price_allo, price_stylus, category_id, model_id) " \
-          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-    val = (id.split("'")[1], cpu, float(speed), videocard, ram_type, int(ram), hd_type, hd, itbox_price, rozetka_price, citrus_price, allo_price, stylus_price, category_id, id.split("'")[1])
+          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    val = (id.split("'")[1], cpu, float(speed), videocard, ram_type, int(ram), hd_type, hd, DEFAULT, DEFAULT,
+           DEFAULT, DEFAULT, DEFAULT, DEFAULT, itbox_price, rozetka_price,
+           citrus_price, allo_price, stylus_price, category_id, id.split("'")[1])
+    print(val)
     cursor.execute(sql, val)
     mydb.commit()
 
 
 
 def smartphone(id):
+    DEFAULT = 0
     id = "'" + str(id) + "'"
     query = "select link_itbox, link_rozetka, link_citrus, link_allo, link_stylus  from FoxApp_contributor where id = " + id + ";"
     cursor.execute(query)
@@ -272,11 +283,14 @@ def smartphone(id):
     category_id = 3
     print(id.split("'")[1], cpu, float(diagonal), int(main_cam), back_cam, front_cam, ram, color, os, itbox_price,
            rozetka_price, citrus_price, allo_price, stylus_price, category_id)
-    sql = "INSERT INTO FoxApp_products (id, cpu, diagonal, main_cam, back_cam, front_cam, ram, color, os, price_itbox, price_rozetka, " \
+    sql = "INSERT INTO FoxApp_products (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, " \
+          "diagonal, main_cam, back_cam, front_cam, color, os, price_itbox, price_rozetka, " \
           "price_citrus, price_allo, price_stylus, category_id, model_id) " \
-          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-    val = (id.split("'")[1], cpu, float(diagonal), int(main_cam), back_cam, front_cam, ram, color, os, itbox_price,
+          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    val = (id.split("'")[1], cpu, DEFAULT, DEFAULT, DEFAULT, ram, DEFAULT, DEFAULT, float(diagonal),
+           int(main_cam), back_cam, front_cam, color, os, itbox_price,
            rozetka_price, citrus_price, allo_price, stylus_price, category_id, id.split("'")[1])
+    print(val)
     cursor.execute(sql, val)
     mydb.commit()
 
