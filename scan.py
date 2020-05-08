@@ -149,6 +149,10 @@ def laptop(id):
             proc = elements1[i]
             cpu = proc.split("(")[0]
             speed = proc.split("(")[1].replace(')', '').split("ГГц")[0]
+            try:
+                print(type(float(speed)))
+            except:
+                speed = proc.split("(")[1].replace(')', '').split("GHz")[0].split('-')[0]
         if elem == "Модель видеокарты" or elem == "Видеокарта":
             videocard = elements1[i]
         if elem == "Тип оперативной памяти":
