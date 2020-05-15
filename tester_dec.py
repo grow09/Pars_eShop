@@ -5,5 +5,6 @@ try:
     print(type(float(speed)))
 except:
     speed = proc.split("(")[1].replace(')', '').split("GHz")[0].split('-')[0]
+cpu_serial = proc.split(' ')[0] + ' ' + proc.split(' ')[1] + ' ' + proc.split(' ')[2]
 print(type(float(speed)))
-print(speed)
+print(cpu_serial)

@@ -108,16 +108,17 @@ def pc(id):
         stylus_price = 0
     if int(hd) < 10:
         hd = int(hd)*1000
+    cpu_serial = cpu.split(' ')[0] + ' ' + cpu.split(' ')[1] + ' ' + cpu.split(' ')[2]
     category_id = 1
     print(id.split("'")[1], cpu, speed, videocard, ram_type, ram, hd_type, hd, itbox_price, rozetka_price, citrus_price, allo_price,
-          stylus_price, category_id)
+          stylus_price, category_id, cpu_serial)
     sql = "INSERT INTO FoxApp_products (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, " \
           "diagonal, main_cam, back_cam, front_cam, color, os, price_itbox, price_rozetka, " \
-          "price_citrus, price_allo, price_stylus, category_id, model_id) " \
-          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+          "price_citrus, price_allo, price_stylus, category_id, model_id, cpu_serial) " \
+          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     val = (id.split("'")[1], cpu, float(speed), videocard, ram_type, int(ram), hd_type, hd, DEFAULT, DEFAULT,
            DEFAULT, DEFAULT, DEFAULT, DEFAULT, itbox_price, rozetka_price,
-           citrus_price, allo_price, stylus_price, category_id, id.split("'")[1])
+           citrus_price, allo_price, stylus_price, category_id, id.split("'")[1], cpu_serial)
     print(val)
     cursor.execute(sql, val)
     mydb.commit()
@@ -199,16 +200,17 @@ def laptop(id):
         stylus_price = 0
     if int(hd) < 10:
         hd = int(hd)*1000
+    cpu_serial = cpu.split(' ')[0] + ' ' + cpu.split(' ')[1] + ' ' + cpu.split(' ')[2]
     category_id = 2
-    print(id.split("'")[1], cpu, float(speed), videocard, ram_type, int(ram), hd_type, hd, itbox_price, rozetka_price, citrus_price, allo_price,
-          stylus_price, category_id)
+    print(id.split("'")[1], cpu, speed, videocard, ram_type, ram, hd_type, hd, itbox_price, rozetka_price, citrus_price, allo_price,
+          stylus_price, category_id, cpu_serial)
     sql = "INSERT INTO FoxApp_products (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, " \
           "diagonal, main_cam, back_cam, front_cam, color, os, price_itbox, price_rozetka, " \
-          "price_citrus, price_allo, price_stylus, category_id, model_id) " \
-          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+          "price_citrus, price_allo, price_stylus, category_id, model_id, cpu_serial) " \
+          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     val = (id.split("'")[1], cpu, float(speed), videocard, ram_type, int(ram), hd_type, hd, DEFAULT, DEFAULT,
            DEFAULT, DEFAULT, DEFAULT, DEFAULT, itbox_price, rozetka_price,
-           citrus_price, allo_price, stylus_price, category_id, id.split("'")[1])
+           citrus_price, allo_price, stylus_price, category_id, id.split("'")[1], cpu_serial)
     print(val)
     cursor.execute(sql, val)
     mydb.commit()
@@ -284,16 +286,17 @@ def smartphone(id):
         stylus_price = int(stylus_price)
     except:
         stylus_price = 0
+    # cpu_serial = cpu.split(' ')[0] + ' ' + cpu.split(' ')[1] + ' ' + cpu.split(' ')[2]
     category_id = 3
     print(id.split("'")[1], cpu, float(diagonal), int(main_cam), back_cam, front_cam, ram, color, os, itbox_price,
-           rozetka_price, citrus_price, allo_price, stylus_price, category_id)
+           rozetka_price, citrus_price, allo_price, stylus_price, category_id, cpu)
     sql = "INSERT INTO FoxApp_products (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, " \
           "diagonal, main_cam, back_cam, front_cam, color, os, price_itbox, price_rozetka, " \
-          "price_citrus, price_allo, price_stylus, category_id, model_id) " \
-          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+          "price_citrus, price_allo, price_stylus, category_id, model_id, cpu_serial) " \
+          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     val = (id.split("'")[1], cpu, DEFAULT, DEFAULT, DEFAULT, ram, DEFAULT, DEFAULT, float(diagonal),
            int(main_cam), back_cam, front_cam, color, os, itbox_price,
-           rozetka_price, citrus_price, allo_price, stylus_price, category_id, id.split("'")[1])
+           rozetka_price, citrus_price, allo_price, stylus_price, category_id, id.split("'")[1], cpu)
     print(val)
     cursor.execute(sql, val)
     mydb.commit()
