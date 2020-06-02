@@ -3,6 +3,12 @@ import mysql.connector
 import time
 
 
+# Підключення до браузера
+executable_path = "/home/grow/Documents/Diplom/Pars_eShop/chromedriver"
+chromeOptions = webdriver.ChromeOptions()
+driver = webdriver.Chrome(executable_path=executable_path)
+
+# з'єднання з базою даних
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -10,11 +16,6 @@ mydb = mysql.connector.connect(
     database="eShop"
 )
 cursor = mydb.cursor()
-
-
-executable_path = "/home/grow/Documents/Diplom/Pars_eShop/chromedriver"
-chromeOptions = webdriver.ChromeOptions()
-driver = webdriver.Chrome(executable_path=executable_path)
 
 
 def cycle(id):
@@ -78,6 +79,10 @@ def pc(id):
     except:
         itbox_price = 0
     try:
+        itbox_com_count = driver.find_element_by_class_name("header-comments-count")
+    except:
+        itbox_com_count = 0
+    try:
         driver.get(rozetka)
         driver.implicitly_wait(5)
         rozetka_price = driver.find_element_by_class_name("product-prices__big").text.split("₴")[0].replace(' ', '')
@@ -140,6 +145,7 @@ def laptop(id):
     driver.get(itbox)
     driver.find_element_by_class_name("characteristic-toggle").click()
     elements1 = []
+    ram_type = '-'
     info = driver.find_elements_by_tag_name("td")
     for elem in info:
         elements1.append(elem.text)
