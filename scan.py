@@ -7,12 +7,13 @@ import time
 executable_path = "/home/grow/Documents/Diplom/Pars_eShop/chromedriver"
 chromeOptions = webdriver.ChromeOptions()
 driver = webdriver.Chrome(executable_path=executable_path)
+driver.implicitly_wait(5)
 
 # з'єднання з базою даних
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="",
+    passwd="ei7veeChu4bo",
     database="eShop"
 )
 cursor = mydb.cursor()
@@ -102,7 +103,11 @@ def pc(id):
     except:
         citrus_price = 0
     try:
-        citrus_com_count = driver.find_elements_by_class_name("el-tabs__item")[3].text.split(" ")[1]
+        citrus_com_count = driver.find_elements_by_class_name("el-tabs__item")[-2].text.split(" ")[1]
+        if type(int(citrus_com_count)) != int:
+            citrus_com_count = 0
+        else:
+            citrus_com_count = citrus_com_count
     except:
         citrus_com_count = 0
     try:
@@ -113,7 +118,7 @@ def pc(id):
     except:
         allo_price = 0
     try:
-        allo_com_count = driver.find_element_by_xpath("//a[@id='discussionTab']").text.split(" ")[-1]
+        allo_com_count = driver.find_element_by_xpath("//a[@id='discussionTab']").text.split(" ")[3]
     except:
         allo_com_count = 0
     try:
@@ -136,11 +141,11 @@ def pc(id):
           stylus_price, category_id, cpu_serial, itbox_com_count, rozetka_com_count, citrus_com_count, allo_com_count, stylus_com_count)
     sql = "INSERT INTO FoxApp_products (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, " \
           "diagonal, main_cam, back_cam, front_cam, color, os, price_itbox, price_rozetka, " \
-          "price_citrus, price_allo, price_stylus, category_id, model_id, cpu_serial) " \
-          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+          "price_citrus, price_allo, price_stylus, category_id, model_id, cpu_serial, itbox_com_count, rozetka_com_count, citrus_com_count, allo_com_count, stylus_com_count) " \
+          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     val = (id.split("'")[1], cpu, float(speed), videocard, ram_type, int(ram), hd_type, hd, DEFAULT, DEFAULT,
            DEFAULT, DEFAULT, DEFAULT, DEFAULT, itbox_price, rozetka_price,
-           citrus_price, allo_price, stylus_price, category_id, id.split("'")[1], cpu_serial)
+           citrus_price, allo_price, stylus_price, category_id, id.split("'")[1], cpu_serial, itbox_com_count, rozetka_com_count, citrus_com_count, allo_com_count, stylus_com_count)
     print(val)
     cursor.execute(sql, val)
     mydb.commit()
@@ -216,7 +221,11 @@ def laptop(id):
     except:
         citrus_price = 0
     try:
-        citrus_com_count = driver.find_elements_by_class_name("el-tabs__item")[3].text.split(" ")[1]
+        citrus_com_count = driver.find_elements_by_class_name("el-tabs__item")[-2].text.split(" ")[1]
+        if type(int(citrus_com_count)) != int:
+            citrus_com_count = 0
+        else:
+            citrus_com_count = citrus_com_count
     except:
         citrus_com_count = 0
     try:
@@ -227,7 +236,7 @@ def laptop(id):
     except:
         allo_price = 0
     try:
-        allo_com_count = driver.find_element_by_xpath("//a[@id='discussionTab']").text.split(" ")[-1]
+        allo_com_count = driver.find_element_by_xpath("//a[@id='discussionTab']").text.split(" ")[3]
     except:
         allo_com_count = 0
     try:
@@ -250,11 +259,11 @@ def laptop(id):
           stylus_price, category_id, cpu_serial, itbox_com_count, rozetka_com_count, citrus_com_count, allo_com_count, stylus_com_count)
     sql = "INSERT INTO FoxApp_products (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, " \
           "diagonal, main_cam, back_cam, front_cam, color, os, price_itbox, price_rozetka, " \
-          "price_citrus, price_allo, price_stylus, category_id, model_id, cpu_serial) " \
-          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+          "price_citrus, price_allo, price_stylus, category_id, model_id, cpu_serial, itbox_com_count, rozetka_com_count, citrus_com_count, allo_com_count, stylus_com_count) " \
+          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     val = (id.split("'")[1], cpu, float(speed), videocard, ram_type, int(ram), hd_type, hd, DEFAULT, DEFAULT,
            DEFAULT, DEFAULT, DEFAULT, DEFAULT, itbox_price, rozetka_price,
-           citrus_price, allo_price, stylus_price, category_id, id.split("'")[1], cpu_serial)
+           citrus_price, allo_price, stylus_price, category_id, id.split("'")[1], cpu_serial, itbox_com_count, rozetka_com_count, citrus_com_count, allo_com_count, stylus_com_count)
     print(val)
     cursor.execute(sql, val)
     mydb.commit()
@@ -325,7 +334,11 @@ def smartphone(id):
     except:
         citrus_price = 0
     try:
-        citrus_com_count = driver.find_elements_by_class_name("el-tabs__item")[3].text.split(" ")[1]
+        citrus_com_count = driver.find_elements_by_class_name("el-tabs__item")[-2].text.split(" ")[1]
+        if type(int(citrus_com_count)) != int:
+            citrus_com_count = 0
+        else:
+            citrus_com_count = citrus_com_count
     except:
         citrus_com_count = 0
     try:
@@ -336,7 +349,7 @@ def smartphone(id):
     except:
         allo_price = 0
     try:
-        allo_com_count = driver.find_element_by_xpath("//a[@id='discussionTab']").text.split(" ")[-1]
+        allo_com_count = driver.find_element_by_xpath("//a[@id='discussionTab']").text.split(" ")[3]
     except:
         allo_com_count = 0
     try:
@@ -357,11 +370,11 @@ def smartphone(id):
            rozetka_price, citrus_price, allo_price, stylus_price, category_id, cpu, itbox_com_count, rozetka_com_count, citrus_com_count, allo_com_count, stylus_com_count)
     sql = "INSERT INTO FoxApp_products (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, " \
           "diagonal, main_cam, back_cam, front_cam, color, os, price_itbox, price_rozetka, " \
-          "price_citrus, price_allo, price_stylus, category_id, model_id, cpu_serial) " \
-          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+          "price_citrus, price_allo, price_stylus, category_id, model_id, cpu_serial, itbox_com_count, rozetka_com_count, citrus_com_count, allo_com_count, stylus_com_count) " \
+          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     val = (id.split("'")[1], cpu, DEFAULT, DEFAULT, DEFAULT, ram, DEFAULT, DEFAULT, float(diagonal),
            int(main_cam), back_cam, front_cam, color, os, itbox_price,
-           rozetka_price, citrus_price, allo_price, stylus_price, category_id, id.split("'")[1], cpu)
+           rozetka_price, citrus_price, allo_price, stylus_price, category_id, id.split("'")[1], cpu, itbox_com_count, rozetka_com_count, citrus_com_count, allo_com_count, stylus_com_count)
     print(val)
     cursor.execute(sql, val)
     mydb.commit()
