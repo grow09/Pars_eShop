@@ -79,7 +79,7 @@ def pc(id):
     except:
         itbox_price = 0
     try:
-        itbox_com_count = driver.find_element_by_class_name("header-comments-count")
+        itbox_com_count = driver.find_element_by_class_name("header-comments-count").text.split(" ")[0]
     except:
         itbox_com_count = 0
     try:
@@ -90,6 +90,10 @@ def pc(id):
     except:
         rozetka_price = 0
     try:
+        rozetka_com_count = driver.find_element_by_class_name("product-tabs__link-text").text
+    except:
+        rozetka_com_count = 0
+    try:
         driver.get(citrus)
         time.sleep(1)
         driver.implicitly_wait(5)
@@ -98,6 +102,10 @@ def pc(id):
     except:
         citrus_price = 0
     try:
+        citrus_com_count = driver.find_elements_by_class_name("el-tabs__item")[3].text.split(" ")[1]
+    except:
+        citrus_com_count = 0
+    try:
         driver.get(allo)
         driver.implicitly_wait(5)
         allo_price = driver.find_element_by_xpath("//meta[@itemprop='price']").get_attribute("content").replace(' ', '')
@@ -105,18 +113,27 @@ def pc(id):
     except:
         allo_price = 0
     try:
+        allo_com_count = driver.find_element_by_xpath("//a[@id='discussionTab']").text.split(" ")[-1]
+    except:
+        allo_com_count = 0
+    try:
         driver.get(stylus)
         driver.implicitly_wait(5)
         stylus_price = driver.find_element_by_class_name("regular-price").text.split("грн")[0].replace(' ', '')
         stylus_price = int(stylus_price)
     except:
         stylus_price = 0
+    try:
+        driver.maximize_window()    
+        stylus_com_count = driver.find_element_by_class_name("count-of-reviews").text.split(" ")[0]
+    except:
+        stylus_com_count = 0
     if int(hd) < 10:
         hd = int(hd)*1000
     cpu_serial = cpu.split(' ')[0] + ' ' + cpu.split(' ')[1] + ' ' + cpu.split(' ')[2]
     category_id = 1
     print(id.split("'")[1], cpu, speed, videocard, ram_type, ram, hd_type, hd, itbox_price, rozetka_price, citrus_price, allo_price,
-          stylus_price, category_id, cpu_serial)
+          stylus_price, category_id, cpu_serial, itbox_com_count, rozetka_com_count, citrus_com_count, allo_com_count, stylus_com_count)
     sql = "INSERT INTO FoxApp_products (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, " \
           "diagonal, main_cam, back_cam, front_cam, color, os, price_itbox, price_rozetka, " \
           "price_citrus, price_allo, price_stylus, category_id, model_id, cpu_serial) " \
@@ -176,12 +193,20 @@ def laptop(id):
     except:
         itbox_price = 0
     try:
+        itbox_com_count = driver.find_element_by_class_name("header-comments-count").text.split(" ")[0]
+    except:
+        itbox_com_count = 0
+    try:
         driver.get(rozetka)
         driver.implicitly_wait(5)
         rozetka_price = driver.find_element_by_class_name("product-prices__big").text.split("₴")[0].replace(' ', '')
         rozetka_price = int(rozetka_price)
     except:
         rozetka_price = 0
+    try:
+        rozetka_com_count = driver.find_element_by_class_name("product-tabs__link-text").text
+    except:
+        rozetka_com_count = 0
     try:
         driver.get(citrus)
         time.sleep(1)
@@ -191,6 +216,10 @@ def laptop(id):
     except:
         citrus_price = 0
     try:
+        citrus_com_count = driver.find_elements_by_class_name("el-tabs__item")[3].text.split(" ")[1]
+    except:
+        citrus_com_count = 0
+    try:
         driver.get(allo)
         driver.implicitly_wait(5)
         allo_price = driver.find_element_by_xpath("//meta[@itemprop='price']").get_attribute("content").replace(' ', '')
@@ -198,18 +227,27 @@ def laptop(id):
     except:
         allo_price = 0
     try:
+        allo_com_count = driver.find_element_by_xpath("//a[@id='discussionTab']").text.split(" ")[-1]
+    except:
+        allo_com_count = 0
+    try:
         driver.get(stylus)
         driver.implicitly_wait(5)
         stylus_price = driver.find_element_by_class_name("regular-price").text.split("грн")[0].replace(' ', '')
         stylus_price = int(stylus_price)
     except:
         stylus_price = 0
+    try:
+        driver.maximize_window()    
+        stylus_com_count = driver.find_element_by_class_name("count-of-reviews").text.split(" ")[0]
+    except:
+        stylus_com_count = 0
     if int(hd) < 10:
         hd = int(hd)*1000
     cpu_serial = cpu.split(' ')[0] + ' ' + cpu.split(' ')[1] + ' ' + cpu.split(' ')[2]
     category_id = 2
     print(id.split("'")[1], cpu, speed, videocard, ram_type, ram, hd_type, hd, itbox_price, rozetka_price, citrus_price, allo_price,
-          stylus_price, category_id, cpu_serial)
+          stylus_price, category_id, cpu_serial, itbox_com_count, rozetka_com_count, citrus_com_count, allo_com_count, stylus_com_count)
     sql = "INSERT INTO FoxApp_products (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, " \
           "diagonal, main_cam, back_cam, front_cam, color, os, price_itbox, price_rozetka, " \
           "price_citrus, price_allo, price_stylus, category_id, model_id, cpu_serial) " \
@@ -264,12 +302,20 @@ def smartphone(id):
     except:
         itbox_price = 0
     try:
+        itbox_com_count = driver.find_element_by_class_name("header-comments-count").text.split(" ")[0]
+    except:
+        itbox_com_count = 0
+    try:
         driver.get(rozetka)
         driver.implicitly_wait(5)
         rozetka_price = driver.find_element_by_class_name("product-prices__big").text.split("₴")[0].replace(' ', '')
         rozetka_price = int(rozetka_price)
     except:
         rozetka_price = 0
+    try:
+        rozetka_com_count = driver.find_element_by_class_name("product-tabs__link-text").text
+    except:
+        rozetka_com_count = 0
     try:
         driver.get(citrus)
         time.sleep(1)
@@ -279,6 +325,10 @@ def smartphone(id):
     except:
         citrus_price = 0
     try:
+        citrus_com_count = driver.find_elements_by_class_name("el-tabs__item")[3].text.split(" ")[1]
+    except:
+        citrus_com_count = 0
+    try:
         driver.get(allo)
         driver.implicitly_wait(5)
         allo_price = driver.find_element_by_xpath("//meta[@itemprop='price']").get_attribute("content").replace(' ', '')
@@ -286,16 +336,25 @@ def smartphone(id):
     except:
         allo_price = 0
     try:
+        allo_com_count = driver.find_element_by_xpath("//a[@id='discussionTab']").text.split(" ")[-1]
+    except:
+        allo_com_count = 0
+    try:
         driver.get(stylus)
         driver.implicitly_wait(5)
         stylus_price = driver.find_element_by_class_name("regular-price").text.split("грн")[0].replace(' ', '')
         stylus_price = int(stylus_price)
     except:
         stylus_price = 0
+    try:
+        driver.maximize_window()    
+        stylus_com_count = driver.find_element_by_class_name("count-of-reviews").text.split(" ")[0]
+    except:
+        stylus_com_count = 0
     # cpu_serial = cpu.split(' ')[0] + ' ' + cpu.split(' ')[1] + ' ' + cpu.split(' ')[2]
     category_id = 3
     print(id.split("'")[1], cpu, float(diagonal), int(main_cam), back_cam, front_cam, ram, color, os, itbox_price,
-           rozetka_price, citrus_price, allo_price, stylus_price, category_id, cpu)
+           rozetka_price, citrus_price, allo_price, stylus_price, category_id, cpu, itbox_com_count, rozetka_com_count, citrus_com_count, allo_com_count, stylus_com_count)
     sql = "INSERT INTO FoxApp_products (id, cpu, speed, videocard, ram_type, ram, hd_type, hd, " \
           "diagonal, main_cam, back_cam, front_cam, color, os, price_itbox, price_rozetka, " \
           "price_citrus, price_allo, price_stylus, category_id, model_id, cpu_serial) " \
